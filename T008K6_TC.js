@@ -1,6 +1,11 @@
 import { check } from "k6";
 import http from "k6/http";
 import { sleep } from "k6";
+import { SharedArray } from "k6/data";
+
+const data = new SharedArray("data", function () {
+  return JSON.parse(open("data.json")).items;
+});
 
 export const options = {
   vus: 1,
@@ -25,7 +30,7 @@ export default function () {
       "Content-Type": "application/json",
     },
   };
-
+  const products = data[0];
   const res = http.post(urlLogin, payload, params);
   check(res, {
     "Login - Status code is 200": (r) => r.status === 200,
@@ -37,6 +42,7 @@ export default function () {
   const res1 = http.get(urlProducts);
   check(res1, {
     "Get list of products - status code is 200": (r) => r.status === 200,
-    "Include iPhone in list of products": (r) => r.body.includes("iPhone 9"),
+    "Include iPhone in list of products": (r) =>
+      r.body.includes(products.title),
   });
 }
