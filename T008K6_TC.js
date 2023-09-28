@@ -14,8 +14,8 @@ export const options = {
 };
 
 export default function () {
-  const url1 = "https://dummyjson.com/auth/login";
-  const url2 = "https://dummyjson.com/products";
+  const urlLogin = "https://dummyjson.com/auth/login";
+  const urlProducts = "https://dummyjson.com/products";
   const payload = JSON.stringify({
     username: "kminchelle",
     password: "0lelplR",
@@ -26,7 +26,7 @@ export default function () {
     },
   };
 
-  const res = http.post(url1, payload, params);
+  const res = http.post(urlLogin, payload, params);
   check(res, {
     "Login - Status code is 200": (r) => r.status === 200,
     "Response body has username": (r) =>
@@ -34,7 +34,7 @@ export default function () {
   });
 
   sleep(1);
-  const res1 = http.get(url2);
+  const res1 = http.get(urlProducts);
   check(res1, {
     "Get list of products - status code is 200": (r) => r.status === 200,
     "Include products": (r) => r.body.includes("iPhone 9"),
