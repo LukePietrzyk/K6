@@ -37,6 +37,6 @@ export default function () {
   const res1 = http.get(urlProducts);
   check(res1, {
     "Get list of products - status code is 200": (r) => r.status === 200,
-    "Include products": (r) => r.body.includes("iPhone 9"),
+    "Include iPhone in list of products": (r) => r.body.includes("iPhone 9"),
   });
 }
