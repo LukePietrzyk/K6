@@ -3,5 +3,6 @@
     { "id": 1, "title": "iPhone 9", "price": 549 },
     { "id": 10, "title": "HP Pavilion 15-DK1056WM", "price": 1099 }
   ],
-  "users": [{ "username": "kminchelle", "password": "0lelplR", "id": 15 }]
+  "users": [{ "username": "kminchelle", "password": "0lelplR", "id": 15 }],
+  "products": ["DummyTitle", "Iphone 15", "G pro"]
 }
